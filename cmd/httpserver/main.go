@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	brokerRepository := brokerrepo.NewSqliteRepo("store.sqlite")
+	brokerRepository := brokerrepo.NewSqliteRepo("acectl.db")
 	brokerService := brokersrv.New(brokerRepository)
 	brokerHandler := brokerhdl.NewHttpHandler(brokerService)
 
