@@ -34,3 +34,19 @@ func BuildHttpResponseStatus(status int, statusResponse string, exitState string
 		ExecutionState: exitState,
 	}
 }
+
+// -------- Command ---------
+
+type HttpResponseCommand struct {
+	Success        bool   `json:"success"`
+	Response       string `json:"response"`
+	ExecutionState string `json:"execState"`
+}
+
+func BuildHttpResponseCommand(success bool, response string, exitState string) HttpResponseCommand {
+	return HttpResponseCommand{
+		Success:        success,
+		Response:       response,
+		ExecutionState: exitState,
+	}
+}

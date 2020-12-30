@@ -18,6 +18,8 @@ func main() {
 	router.GET("/broker/:brokerId", brokerHandler.Get)
 	router.DELETE("/broker/:brokerId", brokerHandler.Unregister)
 	router.GET("/broker/:brokerId/status", brokerHandler.Status)
+	router.GET("/broker/:brokerId/stop", brokerHandler.Stop)
+	router.GET("/broker/:brokerId/start", brokerHandler.Start)
 
 	router.Run(":8080")
 }

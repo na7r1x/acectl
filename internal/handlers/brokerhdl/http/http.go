@@ -66,10 +66,6 @@ func (hdl *HTTPHandler) Get(c *gin.Context) {
 func (hdl *HTTPHandler) Status(c *gin.Context) {
 	statusResponse, exitState, err := hdl.brokerService.Status(c.Param("brokerId"), 60)
 	if err != nil {
-		if exitState == "" {
-			c.AbortWithStatusJSON(404, gin.H{"message": err.Error()})
-			return
-		}
 		c.AbortWithStatusJSON(500, gin.H{"message": err.Error()})
 		return
 	}
@@ -81,4 +77,33 @@ func (hdl *HTTPHandler) Status(c *gin.Context) {
 		status = 0
 	}
 	c.JSON(200, BuildHttpResponseStatus(status, statusResponse, exitState))
+}
+
+func (hdl *HTTPHandler) Stop(c *gin.Context) {
+	stopResponse, exitState, err := hdl.brokerService.Stop(c.Param("brokerId"), 60)
+	if err != nil {
+		c.AbortWithStatusJSON(500, gin.H{"message": err.Error()})
+		return
+	}
+
+	var success bool
+	if exitState == "" {
+		success = true
+	} else {
+		success = false
+	}
+	c.JSON(200, BuildHttpResponseCommand(success, stopResponse, exitState))
+}
+
+func (hdl *HTTPHandler) Start(c *gin.Context) {
+	startResponse, exitState, err := hdl.brokerService.Start(c.Param("brokerId"), 60)
+	if err != nil {
+		c.AbortWithStatusJSON(500, gin.H{"message": err.Error()})
+		return
+	}
+	if exitState == "" {
+		c.JSON(200, BuildHttpResponseCommand(true, startResponse, exitState))
+	} else {
+		c.JSON(500, BuildHttpResponseCommand(false, startResponse, exitState))
+	}
 }
