@@ -17,7 +17,9 @@ package cmd
 
 import (
 	"fmt"
+	"os"
 
+	"github.com/lensesio/tableprinter"
 	"github.com/na7r1x/acectl/internal/core/service/brokersrv"
 	"github.com/na7r1x/acectl/internal/repositories/brokerrepo"
 	"github.com/spf13/cobra"
@@ -40,7 +42,7 @@ var getCmd = &cobra.Command{
 			fmt.Println(err.Error())
 			return
 		}
-		fmt.Println(broker)
+		tableprinter.Print(os.Stdout, broker)
 	},
 }
 

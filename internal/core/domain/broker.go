@@ -3,11 +3,11 @@ package domain
 import "time"
 
 type Broker struct {
-	Id       string    `json:"id"`
-	Created  time.Time `json:"created"`
-	Host     string    `json:"host"`
-	Port     string    `json:"port,omitempty"`
-	Username string    `json:"username"`
+	Id       string    `json:"id" header:"id"`
+	Created  time.Time `json:"created" header:"created"`
+	Host     string    `json:"host" header:"host"`
+	Port     string    `json:"port,omitempty" header:"port"`
+	Username string    `json:"username" header:"username"`
 	Password string    `json:"-"`
 }
 
