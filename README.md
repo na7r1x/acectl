@@ -40,7 +40,7 @@ Starts specified broker.
 
 ### API
 
-```json
+```
 POST /register [Registers a new broker]
 {
     "id": "EXAMPLEID",
@@ -51,26 +51,26 @@ POST /register [Registers a new broker]
 }
 ```
 
-```json
+```
 GET /broker [Lists all registered brokers]
 ```
 
-```json
+```
 GET /broker/:brokerId [Fetches a specific broker's metadata]
 ```
 
-```json
+```
 DELETE /broker/:brokerId [Unregisters a broker]
 ```
 
-```json
+```
 GET /broker/:brokerId/status [Reports broker status]
 ```
 
-```json
+```
 GET /broker/:brokerId/stop [Stops broker]
 ```
 
-```json
+```
 GET /broker/:brokerId/start [Starts broker]
 ```
